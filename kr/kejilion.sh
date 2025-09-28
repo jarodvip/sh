@@ -1,5 +1,5 @@
 #!/bin/bash
-sh_v="4.1.5"
+sh_v="4.1.6"
 
 
 gl_hui='\e[37m'
@@ -1657,7 +1657,7 @@ cf_purge_cache() {
 	# Zone_ids를 배열로 변환합니다
 	ZONE_IDS=($ZONE_IDS)
   else
-	# 캐시 청소 여부를 사용자에게 프롬프트하십시오
+	# 캐시 청소 여부를 사용자에게 프롬프트합니다
 	read -e -p "CloudFlare의 캐시를 청소해야합니까? (Y/N) :" answer
 	if [[ "$answer" == "y" ]]; then
 	  echo "CF 정보가 저장됩니다$CONFIG_FILE, 나중에 CF 정보를 수정할 수 있습니다"
@@ -7765,7 +7765,8 @@ linux_Oracle() {
 
 		  4)
 			  clear
-			  echo "이 기능은 개발 단계에 있으므로 계속 지켜봐 주시기 바랍니다!"
+			  send_stats "형사 R 스크립트 시작"
+			  bash <(wget -qO- https://github.com/Yohann0617/oci-helper/releases/latest/download/sh_oci-helper_install.sh)
 			  ;;
 		  5)
 			  clear
@@ -8384,7 +8385,7 @@ linux_ldnmp() {
 
 	  docker run -d \
 		--name bitwarden \
-		--restart always \
+		--restart=always \
 		-p 3280:80 \
 		-v /home/web/html/$yuming/bitwarden/data:/data \
 		vaultwarden/server
@@ -8405,7 +8406,7 @@ linux_ldnmp() {
 	  install_ssltls
 	  certs_status
 
-	  docker run -d --name halo --restart always -p 8010:8090 -v /home/web/html/$yuming/.halo2:/root/.halo2 halohub/halo:2
+	  docker run -d --name halo --restart=always -p 8010:8090 -v /home/web/html/$yuming/.halo2:/root/.halo2 halohub/halo:2
 	  duankou=8010
 	  reverse_proxy
 
@@ -8890,7 +8891,7 @@ while true; do
 	  echo -e "${gl_kjlan}93.  ${color93}DUFS 미니멀리스트 정적 파일 서버${gl_kjlan}94.  ${color94}고속 다운로드 도구"
 	  echo -e "${gl_kjlan}95.  ${color95}종이없는 문서 관리 플랫폼${gl_kjlan}96.  ${color96}2FAUTH 자체 호스팅 2 단계 유효성 검사기"
 	  echo -e "${gl_kjlan}97.  ${color97}와이어 가드 네트워킹 (서버 측)${gl_kjlan}98.  ${color98}와이어 가드 네트워킹 (클라이언트)"
-	  echo -e "${gl_kjlan}99.  ${color99}DSM Synology Virtual Machine"
+	  echo -e "${gl_kjlan}99.  ${color99}DSM Synology Virtual Machine${gl_kjlan}100. ${color100}동기화 지점 간 파일 동기화 도구"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}b.   ${gl_bai}모든 응용 프로그램 데이터를 백업합니다${gl_kjlan}r.   ${gl_bai}모든 응용 프로그램 데이터를 복원하십시오"
 	  echo -e "${gl_kjlan}------------------------"
@@ -9499,7 +9500,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d --name looking-glass --restart always -p ${docker_port}:80 wikihostinc/looking-glass-server
+			docker run -d --name looking-glass --restart=always -p ${docker_port}:80 wikihostinc/looking-glass-server
 
 		}
 
@@ -9527,7 +9528,7 @@ while true; do
 				-p 53:53/tcp \
 				-p 53:53/udp \
 				-p ${docker_port}:3000/tcp \
-				--restart always \
+				--restart=always \
 				adguard/adguardhome
 
 
@@ -9654,7 +9655,7 @@ while true; do
 				-p ${docker_port}:9000 \
 				-v /var/run/docker.sock:/var/run/docker.sock \
 				-v /home/docker/portainer:/data \
-				--restart always \
+				--restart=always \
 				portainer/portainer
 
 		}
@@ -9678,7 +9679,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d -p ${docker_port}:8080 -v /home/docker/vscode-web:/home/coder/.local/share/code-server --name vscode-web --restart always codercom/code-server
+			docker run -d -p ${docker_port}:8080 -v /home/docker/vscode-web:/home/coder/.local/share/code-server --name vscode-web --restart=always codercom/code-server
 
 		}
 
@@ -9727,7 +9728,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d --name memos -p ${docker_port}:5230 -v /home/docker/memos:/var/opt/memos --restart always ghcr.io/usememos/memos:latest
+			docker run -d --name memos -p ${docker_port}:5230 -v /home/docker/memos:/var/opt/memos --restart=always ghcr.io/usememos/memos:latest
 
 		}
 
@@ -9849,7 +9850,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d -p ${docker_port}:8080 --name speedtest --restart always ghcr.io/librespeed/speedtest
+			docker run -d -p ${docker_port}:8080 --name speedtest --restart=always ghcr.io/librespeed/speedtest
 
 		}
 
@@ -9897,7 +9898,7 @@ while true; do
 
 			docker run -d \
 				--name photoprism \
-				--restart always \
+				--restart=always \
 				--security-opt seccomp=unconfined \
 				--security-opt apparmor=unconfined \
 				-p ${docker_port}:2342 \
@@ -10002,7 +10003,7 @@ while true; do
 
 			docker run -d \
 				--name pingvin-share \
-				--restart always \
+				--restart=always \
 				-p ${docker_port}:3000 \
 				-v /home/docker/pingvin-share/data:/opt/app/backend/data \
 				stonith404/pingvin-share
@@ -10128,7 +10129,7 @@ while true; do
 		local docker_img="jrohy/webssh"
 		local docker_port=8040
 		docker_rum() {
-			docker run -d -p ${docker_port}:5032 --restart always --name webssh -e TZ=Asia/Shanghai jrohy/webssh
+			docker run -d -p ${docker_port}:5032 --restart=always --name webssh -e TZ=Asia/Shanghai jrohy/webssh
 		}
 
 		local docker_describe="简易在线ssh连接工具和sftp工具"
@@ -10246,7 +10247,7 @@ while true; do
 				--name registry \
 				-v /home/docker/registry:/var/lib/registry \
 				-e REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
-				--restart always \
+				--restart=always \
 				registry:2
 
 		}
@@ -10267,7 +10268,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d --name ghproxy --restart always -p ${docker_port}:8080 -v /home/docker/ghproxy/config:/data/ghproxy/config wjqserver/ghproxy:latest
+			docker run -d --name ghproxy --restart=always -p ${docker_port}:8080 -v /home/docker/ghproxy/config:/data/ghproxy/config wjqserver/ghproxy:latest
 
 		}
 
@@ -10383,7 +10384,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d --restart always -p ${docker_port}:5000 \
+			docker run -d --restart=always -p ${docker_port}:5000 \
 				-v /home/docker/datastore:/datastore \
 				--name changedetection dgtlmoon/changedetection.io:latest
 
@@ -10438,7 +10439,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d -p ${docker_port}:8080 -v /home/docker/ollama:/root/.ollama -v /home/docker/ollama/open-webui:/app/backend/data --name ollama --restart always ghcr.io/open-webui/open-webui:ollama
+			docker run -d -p ${docker_port}:8080 -v /home/docker/ollama:/root/.ollama -v /home/docker/ollama/open-webui:/app/backend/data --name ollama --restart=always ghcr.io/open-webui/open-webui:ollama
 
 		}
 
@@ -10490,7 +10491,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d -p ${docker_port}:8080 -v /home/docker/ollama:/root/.ollama -v /home/docker/ollama/open-webui:/app/backend/data --name ollama --restart always ghcr.io/open-webui/open-webui:ollama
+			docker run -d -p ${docker_port}:8080 -v /home/docker/ollama:/root/.ollama -v /home/docker/ollama/open-webui:/app/backend/data --name ollama --restart=always ghcr.io/open-webui/open-webui:ollama
 
 		}
 
@@ -10706,7 +10707,7 @@ while true; do
 
 		docker_rum() {
 
-			docker run -d -p ${docker_port}:8080 -v /home/docker/open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+			docker run -d -p ${docker_port}:8080 -v /home/docker/open-webui:/app/backend/data --name open-webui --restart=always ghcr.io/open-webui/open-webui:main
 
 		}
 
@@ -10750,7 +10751,7 @@ while true; do
 			chmod -R 777 /home/docker/n8n
 
 			docker run -d --name n8n \
-			  --restart always \
+			  --restart=always \
 			  -p ${docker_port}:5678 \
 			  -v /home/docker/n8n:/home/node/.n8n \
 			  -e N8N_HOST=${yuming} \
@@ -10924,7 +10925,7 @@ while true; do
 
 			docker run -d \
 				--name bitwarden \
-				--restart always \
+				--restart=always \
 				-p ${docker_port}:80 \
 				-v /home/docker/bitwarden/data:/data \
 				vaultwarden/server
@@ -12008,7 +12009,7 @@ while true; do
 			  --cap-add SYS_MODULE \
 			  -v /home/docker/wireguard/config:/config \
 			  -v /lib/modules:/lib/modules:ro \
-			  --restart always \
+			  --restart=always \
 			  kjlion/wireguard:alpine
 
 			sleep 3
@@ -12085,8 +12086,34 @@ while true; do
 
 
 
+	100|syncthing)
 
+		local app_id="100"
+		local docker_name="syncthing"
+		local docker_img="syncthing/syncthing:latest"
+		local docker_port=8100
 
+		docker_rum() {
+			docker run -d \
+			  --name=syncthing \
+			  --hostname=my-syncthing \
+			  --restart=always \
+			  -p ${docker_port}:8384 \
+			  -p 22000:22000/tcp \
+			  -p 22000:22000/udp \
+			  -p 21027:21027/udp \
+			  -v /home/docker/syncthing:/var/syncthing \
+			  syncthing/syncthing:latest
+		}
+
+		local docker_describe="开源的点对点文件同步工具，类似于 Dropbox、Resilio Sync，但完全去中心化。"
+		local docker_url="官网介绍: https://github.com/syncthing/syncthing"
+		local docker_use=""
+		local docker_passwd=""
+		local app_size="1"
+		docker_app
+
+		;;
 
 	  b)
 	  	clear
@@ -13084,7 +13111,7 @@ EOF
 
 						  ;;
 					  2)
-						  read -e -p "삭제 해야하는 콘텐츠를 구문 분석하기위한 키워드를 입력하십시오." delhost
+						  read -e -p "삭제 해야하는 구문 분석 컨텐츠의 키워드를 입력하십시오." delhost
 						  sed -i "/$delhost/d" /etc/hosts
 						  send_stats "로컬 호스트 구문 분석 및 삭제"
 						  ;;
@@ -13538,7 +13565,7 @@ EOF
 					  sed -i 's/^ENABLE_STATS="false"/ENABLE_STATS="true"/' /usr/local/bin/k
 					  sed -i 's/^ENABLE_STATS="false"/ENABLE_STATS="true"/' ~/kejilion.sh
 					  echo "수집이 활성화되었습니다"
-					  send_stats "개인 정보 보호 및 보안 컬렉션이 활성화되었습니다"
+					  send_stats "수집을 위해 개인 정보 및 보안이 가능했습니다"
 					  ;;
 				  2)
 					  cd ~
@@ -13743,7 +13770,7 @@ linux_file() {
 
 				# -r 옵션을 사용하여 디렉토리를 재귀 적으로 복사하십시오
 				cp -r "$src_path" "$dest_path" && echo "파일 또는 디렉토리가 복사되었습니다$dest_path" || echo "파일이나 디렉토리를 복사하지 못했습니다"
-				send_stats "파일 또는 디렉토리를 복사하십시오"
+				send_stats "파일 또는 디렉토리를 복사합니다"
 				;;
 
 
