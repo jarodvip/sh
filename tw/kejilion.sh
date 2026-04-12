@@ -3811,7 +3811,7 @@ ldnmp_web_status() {
 			2)
 				send_stats "克隆站點域名"
 				read -e -p "請輸入舊網域名稱:" oddyuming
-				read -e -p "請輸入新網域名稱:" yuming
+				read -e -p "請輸入新網域:" yuming
 				install_certbot
 				install_ssltls
 				certs_status
@@ -3852,7 +3852,7 @@ ldnmp_web_status() {
 				send_stats "建立關聯站點"
 				echo -e "為現有的站點再關聯一個新網域用於訪問"
 				read -e -p "請輸入現有的網域名稱:" oddyuming
-				read -e -p "請輸入新網域名稱:" yuming
+				read -e -p "請輸入新網域:" yuming
 				install_certbot
 				install_ssltls
 				certs_status
@@ -5190,7 +5190,7 @@ dd_xitong() {
 
 		dd_xitong_1() {
 		  echo -e "重裝後初始使用者名稱:${gl_huang}root${gl_bai}初始密碼:${gl_huang}LeitboGi0ro${gl_bai}初始連接埠:${gl_huang}22${gl_bai}"
-		  echo -e "${gl_huang}重装后请及时修改初始密码，防止暴力入侵。命令列輸入passwd修改密碼${gl_bai}"
+		  echo -e "${gl_huang}重裝後請及時修改初始密碼，以防止暴力入侵。命令列輸入passwd修改密碼${gl_bai}"
 		  echo -e "按任意鍵繼續..."
 		  read -n 1 -s -r -p ""
 		  install wget
@@ -6696,7 +6696,7 @@ mount_partition() {
 		return 1
 	fi
 
-	echo "分區已成功掛載到$MOUNT_POINT"
+	echo "分割區已成功掛載到$MOUNT_POINT"
 
 	# 檢查 /etc/fstab 是否已經存在 UUID 或掛載點
 	if grep -qE "UUID=$UUID|[[:space:]]$MOUNT_POINT[[:space:]]" /etc/fstab; then
@@ -9823,7 +9823,7 @@ moltbot_menu() {
 		' "$config_file" > "${config_file}.tmp" && mv "${config_file}.tmp" "$config_file"
 
 		if [[ $? -eq 0 ]]; then
-			echo "✅ 已加入 provider:$provider_name"
+			echo "✅ 已新增 provider:$provider_name"
 			echo "📦 模型引用方式:$provider_name/$models_id"
 			echo "🔧 設定預設模型:"
 			echo "    openclaw config patch '{\"agents.defaults.model.primary\": \"$provider_name/$models_id\"}'"
@@ -9976,7 +9976,7 @@ moltbot_menu() {
 			echo "@openclaw/msteams # Microsoft Teams 企業通訊集成"
 			echo "@openclaw/voice-call # 語音通話外掛程式 (基於 Twilio 等後端)"
 			echo "@openclaw/discord # Discord 頻道自動化管理"
-			echo "@openclaw/nostr       # Nostr 协议：隐私安全加密聊天"
+			echo "@openclaw/nostr # Nostr 協定：隱私安全加密聊天"
 			echo "lobster # 審批工作流程：帶有人工幹預的自動任務"
 			echo "memory-lancedb # 長期記憶增強：基於向量資料庫的精準召回"
 			echo "copilot-proxy # GitHub Copilot 代理程式存取增強"
@@ -10274,7 +10274,7 @@ moltbot_menu() {
 
 		domains=$(openclaw_find_webui_domain)
 		if [ -n "$domains" ]; then
-			echo "網域名稱地址："
+			echo "網域地址："
 			echo "$domains" | while read d; do
 				echo "https://${d}/?token=${token}"
 			done
